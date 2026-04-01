@@ -150,7 +150,7 @@ func (c *Client) initialize() error {
 	result, err := c.Request("initialize", map[string]interface{}{
 		"protocolVersion": "2024-11-05",
 		"clientInfo": map[string]string{
-			"name":    "go-claw-code",
+			"name":    "gallifrey-code",
 			"version": "1.0.0",
 		},
 	})

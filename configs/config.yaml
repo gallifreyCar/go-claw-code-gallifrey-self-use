@@ -1,5 +1,5 @@
-# Go-Claw-Code 配置示例
-# 复制到 ~/.config/go-claw-code/config.yaml
+# Gallifrey Code 配置示例
+# 复制到 ~/.config/gallifrey-code/config.yaml
 
 # API 配置
 api:
@@ -36,7 +36,7 @@ log:
 # 记忆系统
 memory:
   enabled: true
-  path: ~/.local/share/go-claw-code/memory
+  path: ~/.local/share/gallifrey-code/memory
 
 # Agent 配置
 agent:

@@ -66,14 +66,14 @@ func Load(cfgFile string) (*Config, error) {
 		v.SetConfigFile(cfgFile)
 	} else {
 		home, _ := os.UserHomeDir()
-		v.AddConfigPath(filepath.Join(home, ".config", "go-claw-code"))
+		v.AddConfigPath(filepath.Join(home, ".config", "gallifrey-code"))
 		v.AddConfigPath(".")
 		v.SetConfigName("config")
 		v.SetConfigType("yaml")
 	}
 
 	// 环境变量
-	v.SetEnvPrefix("GO_CLAW_CODE")
+	v.SetEnvPrefix("GALLIFREY_CODE")
 	v.AutomaticEnv()
 
 	// 绑定环境变量

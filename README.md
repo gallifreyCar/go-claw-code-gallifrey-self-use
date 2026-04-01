@@ -1,11 +1,15 @@
-# Go-Claw-Code
+# Gallifrey Code
 
-> Go 语言实现的 Claude Code 风格 AI 编程助手
+> Go 语言实现的 AI 编程助手（学习项目）
 
 [![Go Version](https://img.shields.io/badge/Go-%3E%3D1.21-blue.svg)](https://golang.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-基于 [Claude Code](https://github.com/anthropics/claude-code) 泄漏源码架构分析，用 Go 语言实现的 AI 编程助手 CLI 工具。
+> ⚠️ **免责声明**: 本项目仅供学习和研究目的。项目灵感来源于公开的 AI 编程助手架构分析，所有代码均为原创实现，不包含任何第三方知识产权内容。请勿将本项目用于商业用途。
+
+## 关于本项目
+
+Gallifrey Code 是一个用 Go 语言实现的 AI 编程助手 CLI 工具，旨在探索和学习 AI Agent 的架构设计。项目展示了如何构建一个支持工具调用、流式响应和多 Agent 协调的 AI 应用。
 
 ## 特性
 
@@ -56,14 +60,14 @@ make install
 ### 使用 go install
 
 ```bash
-go install github.com/gallifreyCar/go-claw-code-gallifrey-self-use/cmd/go-claw-code@latest
+go install github.com/gallifreyCar/go-claw-code-gallifrey-self-use/cmd/gallifrey-code@latest
 ```
 
 ## 快速开始
 
 ### 配置
 
-创建配置文件 `~/.config/go-claw-code/config.yaml`:
+创建配置文件 `~/.config/gallifrey-code/config.yaml`:
 
 ```yaml
 # API 配置
@@ -95,19 +99,19 @@ export OPENAI_API_KEY=your-openai-key
 
 ```bash
 # TUI 交互模式
-go-claw-code
+gallifrey-code
 
 # 无头模式（单次问答）
-go-claw-code -p "帮我写一个 hello world 程序"
+gallifrey-code -p "帮我写一个 hello world 程序"
 
 # 指定模型
-go-claw-code -p "解释这段代码" --model claude-opus-4-6
+gallifrey-code -p "解释这段代码" --model claude-opus-4-6
 
 # 使用 OpenAI 兼容 API
-go-claw-code -p "你好" --provider openai
+gallifrey-code -p "你好" --provider openai
 
 # 查看帮助
-go-claw-code --help
+gallifrey-code --help
 ```
 
 ## 内置工具
@@ -122,12 +126,13 @@ go-claw-code --help
 | `Grep` | 文件内容搜索 |
 | `Agent` | 创建子 Agent |
 | `Task` | 任务管理 |
+| `Memory` | 记忆管理 |
 
 ## 项目结构
 
 ```
 go-claw-code-gallifrey-self-use/
-├── cmd/go-claw-code/        # CLI 入口
+├── cmd/gallifrey-code/      # CLI 入口
 ├── internal/
 │   ├── cli/                 # CLI 命令定义
 │   ├── tui/                 # TUI 界面 (bubbletea)
@@ -165,6 +170,16 @@ make lint
 make build
 ```
 
+## 学习价值
+
+本项目适合以下学习场景：
+
+1. **AI Agent 架构设计** - 了解如何设计一个完整的 AI Agent 系统
+2. **Go CLI 开发** - 学习 cobra、bubbletea 等库的使用
+3. **流式 API 处理** - 掌握如何处理流式响应
+4. **工具系统设计** - 理解可扩展的工具接口设计
+5. **多 Agent 协调** - 探索并行 Agent 的编排方式
+
 ## 路线图
 
 - [x] 项目初始化
@@ -176,10 +191,10 @@ make build
 - [x] 多 Agent 协调
 - [x] MCP 支持
 
-## 致谢
-
-本项目架构设计参考了 2026年3月31日泄漏的 Claude Code v2.1.88 源码分析。
-
 ## License
 
 MIT License
+
+## 声明
+
+本项目为个人学习项目，仅供教育和研究目的使用。作者不对任何因使用本项目而产生的后果负责。使用本项目时，请遵守相关法律法规和服务条款。

@@ -184,7 +184,7 @@ func (m Model) View() string {
 	var b strings.Builder
 
 	// 标题
-	title := fmt.Sprintf("🚀 Go-Claw-Code (%s/%s)", m.provider, m.model)
+	title := fmt.Sprintf("🚀 Gallifrey Code (%s/%s)", m.provider, m.model)
 	b.WriteString(titleStyle.Render(title))
 	b.WriteString("\n\n")
 

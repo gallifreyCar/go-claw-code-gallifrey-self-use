@@ -1,7 +1,7 @@
 .PHONY: all build install clean test lint deps
 
 # 变量
-BINARY_NAME=go-claw-code
+BINARY_NAME=gallifrey-code
 VERSION=$(shell git describe --tags --always --dirty 2>/dev/null || echo "dev")
 BUILD_DIR=bin
 GO=go

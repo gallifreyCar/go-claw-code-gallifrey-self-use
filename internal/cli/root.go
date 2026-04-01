@@ -31,7 +31,7 @@ func Execute(ver, build string) error {
 	buildTime = build
 
 	rootCmd := &cobra.Command{
-		Use:   "go-claw-code",
+		Use:   "gallifrey-code",
 		Short: "AI coding assistant in Go",
 		Long: `Go-Claw-Code is an AI-powered coding assistant that helps you
 write, understand, and modify code through natural language commands.
@@ -42,7 +42,7 @@ Inspired by Claude Code, implemented in Go for single-binary deployment.`,
 	}
 
 	// 全局标志
-	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (default is $HOME/.config/go-claw-code/config.yaml)")
+	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (default is $HOME/.config/gallifrey-code/config.yaml)")
 	rootCmd.PersistentFlags().StringVarP(&provider, "provider", "P", "", "API provider (anthropic or openai)")
 	rootCmd.PersistentFlags().StringVarP(&model, "model", "m", "", "model to use")
 	rootCmd.Flags().BoolVarP(&printMode, "print", "p", false, "print mode (non-interactive)")
@@ -57,7 +57,7 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print version information",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("go-claw-code %s\n", version)
+		fmt.Printf("gallifrey-code %s\n", version)
 		fmt.Printf("  Build: %s\n", buildTime)
 	},
 }
