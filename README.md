@@ -169,11 +169,11 @@ make build
 
 - [x] 项目初始化
 - [x] 核心框架（CLI、配置、API 客户端）
-- [x] 工具系统（Bash, Read, Write, Edit, Glob, Grep）
+- [x] 工具系统（Bash, Read, Write, Edit, Glob, Grep, Memory）
 - [x] Agent 核心循环
 - [x] TUI 界面
 - [x] Memory 系统
-- [ ] 多 Agent 协调
+- [x] 多 Agent 协调
 - [ ] MCP 支持
 
 ## 致谢
