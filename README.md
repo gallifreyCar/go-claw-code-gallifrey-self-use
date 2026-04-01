@@ -174,7 +174,7 @@ make build
 - [x] TUI 界面
 - [x] Memory 系统
 - [x] 多 Agent 协调
-- [ ] MCP 支持
+- [x] MCP 支持
 
 ## 致谢
 
