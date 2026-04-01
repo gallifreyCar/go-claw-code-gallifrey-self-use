@@ -172,8 +172,8 @@ make build
 - [x] 工具系统（Bash, Read, Write, Edit, Glob, Grep）
 - [x] Agent 核心循环
 - [x] TUI 界面
+- [x] Memory 系统
 - [ ] 多 Agent 协调
-- [ ] Memory 系统
 - [ ] MCP 支持
 
 ## 致谢
