@@ -5,6 +5,10 @@ import (
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/gallifreyCar/go-claw-code-gallifrey-self-use/internal/config"
+	"github.com/gallifreyCar/go-claw-code-gallifrey-self-use/internal/coordinator"
+	"github.com/gallifreyCar/go-claw-code-gallifrey-self-use/internal/services/api"
+	"github.com/gallifreyCar/go-claw-code-gallifrey-self-use/internal/tools"
 	"github.com/gallifreyCar/go-claw-code-gallifrey-self-use/internal/tui"
 	"github.com/spf13/cobra"
 )
@@ -78,7 +82,58 @@ func runRoot(cmd *cobra.Command, args []string) {
 }
 
 func runTUI() {
-	p := tea.NewProgram(tui.NewModel(), tea.WithAltScreen())
+	// 加载配置
+	cfg, err := config.Load(cfgFile)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error loading config: %v\n", err)
+		os.Exit(1)
+	}
+
+	// 命令行覆盖
+	if model != "" {
+		cfg.API.Anthropic.Model = model
+		cfg.API.OpenAI.Model = model
+	}
+	if provider != "" {
+		cfg.API.Provider = provider
+	}
+
+	// 检查 API Key
+	if cfg.GetAPIKey() == "" {
+		fmt.Fprintln(os.Stderr, "Error: No API key configured.")
+		fmt.Fprintln(os.Stderr, "Set ANTHROPIC_API_KEY or OPENAI_API_KEY environment variable.")
+		os.Exit(1)
+	}
+
+	// 创建客户端
+	var client api.Client
+	switch cfg.API.Provider {
+	case "openai":
+		client = api.NewOpenAIClient(api.OpenAIConfig{
+			APIKey:  cfg.API.OpenAI.APIKey,
+			Model:   cfg.API.OpenAI.Model,
+			BaseURL: cfg.API.OpenAI.BaseURL,
+		})
+	default:
+		client = api.NewAnthropicClient(api.AnthropicConfig{
+			APIKey:  cfg.API.Anthropic.APIKey,
+			Model:   cfg.API.Anthropic.Model,
+			BaseURL: cfg.API.Anthropic.BaseURL,
+		})
+	}
+
+	// 创建 Agent
+	agent := coordinator.NewAgent(client, cfg.GetModel())
+
+	// 注册工具
+	agent.RegisterTool(tools.NewBash())
+	agent.RegisterTool(tools.NewRead())
+	agent.RegisterTool(tools.NewWrite())
+	agent.RegisterTool(tools.NewEdit())
+
+	// 启动 TUI
+	model := tui.NewModel(agent, client.GetProvider(), cfg.GetModel())
+	p := tea.NewProgram(model, tea.WithAltScreen())
 	if _, err := p.Run(); err != nil {
 		fmt.Fprintf(os.Stderr, "Error running TUI: %v\n", err)
 		os.Exit(1)
