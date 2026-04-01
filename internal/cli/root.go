@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	tea "github.com/charmbracelet/bubbletea"
+	"github.com/gallifreyCar/go-claw-code-gallifrey-self-use/internal/tui"
 	"github.com/spf13/cobra"
 )
 
@@ -76,14 +78,9 @@ func runRoot(cmd *cobra.Command, args []string) {
 }
 
 func runTUI() {
-	fmt.Println("🚀 Starting Go-Claw-Code TUI...")
-	fmt.Println()
-	fmt.Println("TUI mode is not yet implemented.")
-	fmt.Println("Use --print or -p flag for non-interactive mode:")
-	fmt.Println()
-	fmt.Println("  go-claw-code -p \"your prompt here\"")
-	fmt.Println()
-	fmt.Println("Or just provide a prompt directly:")
-	fmt.Println()
-	fmt.Println("  go-claw-code \"your prompt here\"")
+	p := tea.NewProgram(tui.NewModel(), tea.WithAltScreen())
+	if _, err := p.Run(); err != nil {
+		fmt.Fprintf(os.Stderr, "Error running TUI: %v\n", err)
+		os.Exit(1)
+	}
 }
