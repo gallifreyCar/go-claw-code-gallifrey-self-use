@@ -1,23 +1,26 @@
-# Go-Claw-Code 配置文件示例
+# Go-Claw-Code 配置示例
+# 复制到 ~/.config/go-claw-code/config.yaml
 
 # API 配置
 api:
   # 提供商: anthropic 或 openai
   provider: anthropic
 
-  # Anthropic 配置
+  # Anthropic API 配置
   anthropic:
+    # 支持环境变量: ${ANTHROPIC_API_KEY}
     api_key: ${ANTHROPIC_API_KEY}
     model: claude-sonnet-4-6
     base_url: https://api.anthropic.com
 
-  # OpenAI 兼容配置
+  # OpenAI 兼容 API 配置
   openai:
     api_key: ${OPENAI_API_KEY}
-    base_url: https://api.openai.com/v1
     model: gpt-4
-    # 可使用自定义端点，如 OpenRouter、DeepSeek 等
-    # base_url: https://openrouter.ai/api/v1
+    base_url: https://api.openai.com/v1
+    # 可配置其他兼容 API，如:
+    # base_url: https://api.deepseek.com/v1
+    # model: deepseek-chat
 
 # 权限模式
 # ask: 每次询问用户
@@ -33,7 +36,7 @@ log:
 # 记忆系统
 memory:
   enabled: true
-  path: ~/.config/go-claw-code/memory
+  path: ~/.local/share/go-claw-code/memory
 
 # Agent 配置
 agent:

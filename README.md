@@ -168,10 +168,10 @@ make build
 ## 路线图
 
 - [x] 项目初始化
-- [ ] 核心框架（CLI、配置、API 客户端）
-- [ ] 工具系统
-- [ ] Agent 核心
-- [ ] TUI 界面
+- [x] 核心框架（CLI、配置、API 客户端）
+- [x] 工具系统（Bash, Read, Write, Edit, Glob, Grep）
+- [x] Agent 核心循环
+- [x] TUI 界面
 - [ ] 多 Agent 协调
 - [ ] Memory 系统
 - [ ] MCP 支持
