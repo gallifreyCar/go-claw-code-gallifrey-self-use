@@ -1,5 +1,7 @@
 # Gallifrey Code
 
+[English](./README_EN.md) | 简体中文
+
 > Go 语言实现的 AI 编程助手（学习项目）
 
 [![Go Version](https://img.shields.io/badge/Go-%3E%3D1.21-blue.svg)](https://golang.org/)
