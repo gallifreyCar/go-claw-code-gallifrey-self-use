@@ -37,9 +37,9 @@ Inspired by Claude Code, implemented in Go for single-binary deployment.`,
 
 	// 全局标志
 	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (default is $HOME/.config/go-claw-code/config.yaml)")
-	rootCmd.PersistentFlags().StringVarP(&provider, "provider", "p", "anthropic", "API provider (anthropic or openai)")
+	rootCmd.PersistentFlags().StringVarP(&provider, "provider", "P", "", "API provider (anthropic or openai)")
 	rootCmd.PersistentFlags().StringVarP(&model, "model", "m", "", "model to use")
-	rootCmd.Flags().BoolVarP(&printMode, "print", "P", false, "print mode (non-interactive)")
+	rootCmd.Flags().BoolVarP(&printMode, "print", "p", false, "print mode (non-interactive)")
 
 	// 添加子命令
 	rootCmd.AddCommand(versionCmd)
@@ -66,24 +66,24 @@ func runRoot(cmd *cobra.Command, args []string) {
 		runPrintMode(args)
 	} else {
 		// TUI 交互模式
+		if len(args) > 0 {
+			// 有参数时也进入 print 模式
+			runPrintMode(args)
+			return
+		}
 		runTUI()
 	}
 }
 
-func runPrintMode(args []string) {
-	prompt := args[0]
-	if len(args) > 1 {
-		prompt = args[0]
-		for _, arg := range args[1:] {
-			prompt += " " + arg
-		}
-	}
-
-	fmt.Printf("Processing: %s\n", prompt)
-	fmt.Println("TODO: Implement agent loop")
-}
-
 func runTUI() {
-	fmt.Println("Starting TUI...")
-	fmt.Println("TODO: Implement TUI with bubbletea")
+	fmt.Println("🚀 Starting Go-Claw-Code TUI...")
+	fmt.Println()
+	fmt.Println("TUI mode is not yet implemented.")
+	fmt.Println("Use --print or -p flag for non-interactive mode:")
+	fmt.Println()
+	fmt.Println("  go-claw-code -p \"your prompt here\"")
+	fmt.Println()
+	fmt.Println("Or just provide a prompt directly:")
+	fmt.Println()
+	fmt.Println("  go-claw-code \"your prompt here\"")
 }
