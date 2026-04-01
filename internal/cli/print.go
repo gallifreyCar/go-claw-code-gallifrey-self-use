@@ -64,6 +64,8 @@ func runPrintMode(args []string) {
 	agent.RegisterTool(tools.NewRead())
 	agent.RegisterTool(tools.NewWrite())
 	agent.RegisterTool(tools.NewEdit())
+	agent.RegisterTool(tools.NewGlob())
+	agent.RegisterTool(tools.NewGrep())
 
 	// 设置回调
 	agent.OnText(func(text string) {

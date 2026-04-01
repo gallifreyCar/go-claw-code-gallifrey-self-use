@@ -130,6 +130,8 @@ func runTUI() {
 	agent.RegisterTool(tools.NewRead())
 	agent.RegisterTool(tools.NewWrite())
 	agent.RegisterTool(tools.NewEdit())
+	agent.RegisterTool(tools.NewGlob())
+	agent.RegisterTool(tools.NewGrep())
 
 	// 启动 TUI
 	model := tui.NewModel(agent, client.GetProvider(), cfg.GetModel())
